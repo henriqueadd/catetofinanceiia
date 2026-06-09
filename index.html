@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cateto ia - Sua I.A no WhatsApp</title>
+    <meta name="description" content="A Primeira Inteligência Artificial que te ajuda a organizar seus gastos e finanças direto no WhatsApp! Simples e fácil de usar.">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Navigation (Desktop/Tablet) -->
+    <header class="main-header" id="header">
+        <div class="header-container">
+            <a href="#" class="header-logo">
+                <img src="assets/logo.jpg" alt="Cateto ia Logo" class="logo-img-small">
+                <span>Cateto ia</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="#beneficios" class="nav-link">Benefícios</a>
+                <a href="#como-funciona" class="nav-link">Como Funciona</a>
+                <a href="#depoimentos" class="nav-link">Depoimentos</a>
+                <a href="#preco" class="nav-link">Preço</a>
+            </nav>
+            <a href="https://pay.hub.la/7i5nXgo1xTAnq0W9Z9wz" class="btn-header-cta">Quero Ativar</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+        <div class="container hero-container">
+            
+            <div class="hero-layout-grid">
+                <!-- Left Column (Text & Badge & CTAs) -->
+                <div class="hero-text-side">
+                    <!-- Logo Top (only visible on mobile layout) -->
+                    <div class="logo-top mobile-only">
+                        <img src="assets/logo.jpg" alt="Cateto ia Logo" class="logo-img-main">
+                    </div>
+
+                    <!-- Badge -->
+                    <div class="badge-capsule">
+                        <span>Conheça o Cateto ia</span>
+                    </div>
+
+                    <!-- Title -->
+                    <h1 class="hero-title">
+                        Economize dinheiro, direto no seu <span class="highlight-green">WhatsApp!</span>
+                    </h1>
+
+                    <!-- Sub-copy List -->
+                    <div class="hero-sublist">
+                        <p>O Cateto ia nasceu pra simplificar sua vida financeira.</p>
+                        <p>Ele registra e organiza todos os seus gastos direto no WhatsApp.</p>
+                        <p>Sem apps confusos, sem planilhas chatas, sem perder o controle.</p>
+                    </div>
+                    
+                    <!-- Desktop-only CTA Button -->
+                    <div class="hero-cta desktop-only">
+                        <a href="https://pay.hub.la/7i5nXgo1xTAnq0W9Z9wz" class="btn btn-cta">Quero ativar o Cateto</a>
+                    </div>
+                </div>
+
+                <!-- Right Column (Simulator) -->
+                <div class="hero-visual-side">
+                    <!-- Simulator Mockup -->
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div class="chat-header">
+                                <div class="chat-avatar">
+                                    <img src="assets/logo.jpg" alt="Cateto ia Logo">
+                                </div>
+                                <div class="chat-user-info">
+                                    <h4>Cateto ia</h4>
+                                    <p class="status">online</p>
+                                </div>
+                            </div>
+                            
+                            <div class="chat-messages" id="chat-messages-container">
+                                <div class="chat-date">Hoje</div>
+                                
+                                <div class="message outgoing">
+                                    <div class="message-text">uber ontem 15</div>
+                                    <span class="message-time">10:24 <span class="read-ticks">✔✔</span></span>
+                                </div>
+                                
+                                <div class="message incoming">
+                                    <div class="message-text">
+                                        Gasto registrado! 🚗<br>
+                                        <strong>Uber ontem</strong>: R$15,00<br>
+                                        Categoria: Transporte.
+                                    </div>
+                                    <span class="message-time">10:24</span>
+                                </div>
+
+                                <div class="message outgoing">
+                                    <div class="message-text">almoco 35</div>
+                                    <span class="message-time">10:25 <span class="read-ticks">✔✔</span></span>
+                                </div>
+                                
+                                <div class="message incoming">
+                                    <div class="message-text">
+                                        Gasto registrado! 🍔<br>
+                                        <strong>Almoço</strong>: R$35,00<br>
+                                        Categoria: Alimentação.
+                                    </div>
+                                    <span class="message-time">10:25</span>
+                                </div>
+
+                                <div class="message outgoing">
+                                    <div class="message-text">Saldo</div>
+                                    <span class="message-time">10:26 <span class="read-ticks">✔✔</span></span>
+                                </div>
+                                
+                                <div class="message incoming">
+                                    <div class="message-text">
+                                        Seu saldo semanal é de <strong>R$ 450,00</strong>. Você está economizando <strong>R$ 50,00</strong> esta semana! 📈
+                                    </div>
+                                    <span class="message-time">10:26</span>
+                                </div>
+                            </div>
+
+                            <div class="chat-quick-actions">
+                                <button class="quick-btn" data-message="Gastei R$ 35 com Uber">🚗 Uber R$ 35</button>
+                                <button class="quick-btn" data-message="Comi R$ 80 no restaurante">🛒 Almoço R$ 80</button>
+                                <button class="quick-btn" data-message="Paguei R$ 120 no ingresso do show">🎉 Show R$ 120</button>
+                                <button class="quick-btn" data-message="Me dê uma dica para economizar">💡 Dica de Economia</button>
+                            </div>
+                            
+                            <form class="chat-input-area" id="chat-form">
+                                <input type="text" id="chat-input" placeholder="Mensagem..." autocomplete="off">
+                                <button type="submit" class="chat-send-btn" id="send-button">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" fill="#ffffff"/>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- "Simples assim!" Black Pill -->
+                    <div class="simples-assim-badge">
+                        <span>Simples assim!</span>
+                    </div>
+
+                    <!-- Mobile-only CTA Button -->
+                    <div class="hero-cta mobile-only">
+                        <a href="https://pay.hub.la/7i5nXgo1xTAnq0W9Z9wz" class="btn btn-cta">Quero ativar o Cateto</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Benefits Section (Solid Green Background) -->
+    <section class="benefits-section" id="beneficios">
+        <div class="container">
+            <div class="badge-capsule bg-dark-green text-white">
+                <span>Benefícios Principais</span>
+            </div>
+            
+            <h2 class="section-title text-white">O Que o Cateto ia Faz Por Você?</h2>
+            
+            <p class="section-desc text-light-green">
+                O Cateto ia organiza suas finanças como se fosse seu melhor amigo — mas com superpoderes de IA. Automático, simples, direto no WhatsApp.
+            </p>
+            
+            <p class="swipe-hint mobile-only">arraste para o lado e conheça</p>
+
+            <!-- Carousel Wrapper -->
+            <div class="carousel-wrapper">
+                <div class="carousel-track" id="carousel-track">
+                    <!-- Card 1 -->
+                    <div class="carousel-card">
+                        <div class="card-image">
+                            <img src="https://framerusercontent.com/images/DkaDPsneyTNzliBmUUgpPBlog.png" alt="Registro com uma mensagem">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-emoji">💬</span>
+                            <h3>Escreveu “uber 27”? - Pronto.</h3>
+                            <p>O Cateto ia entende, registra e organiza — sem precisar abrir app nenhum.</p>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="carousel-card">
+                        <div class="card-image">
+                            <img src="https://framerusercontent.com/images/hvNXjP9jK6Tkj7LENC0AVoUsLo8.jpg" alt="Registra gastos por áudio">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-emoji">🎙️</span>
+                            <h3>Só dizer "Gastei 250 em um tênis novo" - Pronto.</h3>
+                            <p>O Cateto ia entende, registra e organiza, sem você precisar digitar nada.</p>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="carousel-card">
+                        <div class="card-image">
+                            <img src="https://framerusercontent.com/images/vPySSI6rpz3B4F26uk1dPWrc.jpg" alt="Registra até por foto!">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-emoji">📷</span>
+                            <h3>Pode mandar comprovante pix, foto da nota fiscal…</h3>
+                            <p>O Cateto ia vai entender e registrar tudo certinho, como sempre!</p>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="carousel-card">
+                        <div class="card-image">
+                            <img src="https://framerusercontent.com/images/niT9tyzLoYJLK0JGTUj9ngKunQ.jpg" alt="Envia alertas inteligentes">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-emoji">⚠️</span>
+                            <h3>Se você estiver perto de extrapolar o limite de gastos, o Cateto ia te avisa.</h3>
+                            <p>Sem julgamento. Só aquele toque amigo no momento certo.</p>
+                        </div>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="carousel-card">
+                        <div class="card-image">
+                            <img src="https://framerusercontent.com/images/iL6ZiV1x74XSiRV9zoRFdSXsxk.jpg" alt="Envia relatórios detalhados">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-emoji">📊</span>
+                            <h3>O Cateto ia te mostra pra onde cada real foi.</h3>
+                            <p>Em resumos diários, semanais e mensais direto no WhatsApp.</p>
+                        </div>
+                    </div>
+                    <!-- Card 6 -->
+                    <div class="carousel-card">
+                        <div class="card-image">
+                            <img src="https://framerusercontent.com/images/E2QqIAuGLMh6FFvaIGKEqTK1ZC0.jpg" alt="Organiza por categorias automaticamente">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-emoji">🗂️</span>
+                            <h3>Mercado, transporte, delivery... separa tudo sozinho.</h3>
+                            <p>O Cateto ia já entende o que é cada gasto e separa tudo sozinho de forma automática.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carousel Dots -->
+                <div class="carousel-dots" id="carousel-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section (Beige/Light Mint Background) -->
+    <section class="how-it-works-section" id="como-funciona">
+        <div class="container">
+            <div class="badge-capsule bg-mint-green text-green">
+                <span>Chegou o Cateto — a IA feita pra gente como a gente</span>
+            </div>
+            
+            <h2 class="section-title">Como funciona?</h2>
+            <p class="section-desc">É tão fácil que até a Tia do Zap usa pra se organizar, rs 👵📲</p>
+
+            <!-- Vertical/Horizontal Timeline -->
+            <div class="timeline">
+                <div class="timeline-line"></div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-num">1</div>
+                    <div class="timeline-content">
+                        <h3>Garanta seu acesso</h3>
+                        <p>Você vai receber um link direto pro WhatsApp. É só clicar e começar.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-num">2</div>
+                    <div class="timeline-content">
+                        <h3>Mande um "oi"</h3>
+                        <p>O Cateto ia te dá boas-vindas e já pergunta como você quer organizar seu dinheiro — fácil e rápido.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-num">3</div>
+                    <div class="timeline-content">
+                        <h3>Pronto!</h3>
+                        <p><strong>Registros, relatórios e alertas direto no seu zap</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shield Lock Badge -->
+            <div class="shield-lock-badge">
+                <span class="lock-icon">🔒</span>
+                <span>Sem app para baixar / Direto do zap</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="depoimentos">
+        <div class="container">
+            <h2 class="section-title">São +3.000 pessoas se organizando diariamente com o Cateto ia.</h2>
+            <div class="testimonials-subtitle">
+                <span class="highlight-green underline">depoimentos reais</span>
+            </div>
+
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Me identifiquei muito com o Cateto ia. É como conversar com um amigo que entende de dinheiro, mas não te julga."
+                    </p>
+                    <div class="testimonial-user">
+                        <div class="user-avatar-img">
+                            <img src="https://framerusercontent.com/images/HT4480OmzBkLw5z4seTU2rglqg.png" alt="Juliana R.">
+                        </div>
+                        <div class="user-info">
+                            <h4>Juliana R.</h4>
+                            <p>universitária</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Nunca imaginei que inteligência artificial podia ser tão simples. Melhor assinatura do ano."
+                    </p>
+                    <div class="testimonial-user">
+                        <div class="user-avatar-img">
+                            <img src="https://framerusercontent.com/images/yoXHZWXizUbh1INxF2j6qXbV7Ik.png" alt="João S.">
+                        </div>
+                        <div class="user-info">
+                            <h4>João S.</h4>
+                            <p>empresário</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Finalmente consigo saber pra onde vai meu dinheiro sem precisar ficar horas em planilhas! kkkkkk eu amei!!!"
+                    </p>
+                    <div class="testimonial-user">
+                        <div class="user-avatar-img">
+                            <img src="https://framerusercontent.com/images/h3txD00X3savMghxfjBfKQXuk.png" alt="Gabriela M.">
+                        </div>
+                        <div class="user-info">
+                            <h4>Gabriela M.</h4>
+                            <p>influenciadora</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dark Divider Bar -->
+    <div class="dark-divider-bar"></div>
+
+    <!-- Pricing/Checkout Section -->
+    <section class="checkout-section" id="preco">
+        <div class="container">
+            <span class="badge-capsule bg-mint-green text-green">Tenha sua I.A Financeira agora!</span>
+            <h2 class="section-title text-green-dark">Chegou a hora de você organizar suas finanças.</h2>
+            <p class="section-desc">Comece hoje! Acesse direto no WhatsApp.</p>
+
+            <div class="pricing-card-container">
+                <div class="pricing-card">
+                    <div class="badge-recommend">mais vendido</div>
+                    <h3 class="plan-title">Acesso Anual</h3>
+                    <p class="plan-sub-tag">Valor de um ☕ cafézinho por mês para organizar todas as suas finanças.</p>
+                    
+                    <div class="price-box">
+                        <span class="price-12x">12x</span>
+                        <span class="price-amount">R$6,81</span>
+                    </div>
+                    <p class="price-cash">ou apenas R$67 à vista</p>
+                    
+                    <ul class="benefits-list">
+                        <li>✓ Acesso ilimitado ao Cateto ia</li>
+                        <li>✓ Organização por categorias</li>
+                        <li>✓ Relatórios personalizados</li>
+                        <li>✓ Alertas de limite de gastos</li>
+                        <li>✓ Suporte</li>
+                    </ul>
+                    
+                    <a href="https://pay.hub.la/7i5nXgo1xTAnq0W9Z9wz" class="btn btn-cta">Quero organizar as finanças</a>
+                    
+                    <div class="guarantee-box">
+                        <span class="guarantee-badge">7 dias de garantia!</span>
+                        <p class="guarantee-text">
+                            GARANTIA! Experimente o Cateto ia por 7 dias. Se não estiver 100% satisfeito(a), devolvemos seu dinheiro sem complicações.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="alternative-pricing">
+                    <span class="or-separator">Ou</span>
+                    <a href="https://pay.hub.la/7i5nXgo1xTAnq0W9Z9wz" class="btn btn-alt-pricing">
+                        Acesso 3 meses <span class="alt-price">R$47,90</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA & Footer Section (Unified Light Beige Background) -->
+    <section class="final-section">
+        <div class="container">
+            <!-- Logo Outline -->
+            <div class="logo-bottom">
+                <img src="assets/logo.jpg" alt="Cateto ia Logo" class="logo-img-main">
+            </div>
+            
+            <div class="badge-capsule">
+                <span>Oportunidade</span>
+            </div>
+
+            <h2 class="final-title">
+                Você já ouviu falar de IA. Agora é hora de usar uma que muda sua vida de verdade.
+            </h2>
+            <p class="final-desc">Experimente o Cateto ia. A IA mais útil que você já conheceu.</p>
+            
+            <!-- CTA Button -->
+            <div class="final-cta">
+                <a href="https://pay.hub.la/7i5nXgo1xTAnq0W9Z9wz" class="btn btn-cta">Quero experimentar agora</a>
+            </div>
+
+            <!-- Footer Divider -->
+            <div class="footer-divider"></div>
+
+            <!-- Footer Links & Info -->
+            <footer class="footer-links-area">
+                <div class="support-link">
+                    <a href="https://pay.hub.la/7i5nXgo1xTAnq0W9Z9wz" class="link-footer">Suporte Rápido - via Direct Instagram - Clique aqui</a>
+                </div>
+                <div class="legal-links">
+                    <a href="#" class="link-footer">Política de Privacidade</a>
+                    <span class="sep">-</span>
+                    <a href="#" class="link-footer">Terms of use</a>
+                    <span class="sep">-</span>
+                    <a href="#" class="link-footer">Termos de uso</a>
+                </div>
+                <div class="email-footer">
+                    <a href="mailto:betterplanner.oficial@gmail.com" class="link-footer">betterplanner.oficial@gmail.com</a>
+                </div>
+                
+                <!-- Final Logo & Copyright -->
+                <div class="footer-logo">
+                    <img src="assets/logo.jpg" alt="Cateto ia Logo" class="logo-img-small">
+                </div>
+                <p class="copyright">© 2025 Cateto ia. Todos os direitos reservados.</p>
+            </footer>
+        </div>
+    </section>
+
+    <!-- Script -->
+    <script src="app.js"></script>
+</body>
+</html>
