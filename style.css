@@ -1467,15 +1467,14 @@ img { max-width: 100%; height: auto; display: block; }
     border-radius: 40px;
 }
 
-/* --- Playground Section --- */
-.playground-section {
+/* --- How It Works Section (integrated with simulator) --- */
+.how-it-works-section {
     padding: 50px 0;
-    background-color: var(--bg-beige);
+    background-color: var(--bg-white);
     border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
 }
 
-.playground-layout-grid {
+.how-it-works-layout-grid {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -1483,57 +1482,75 @@ img { max-width: 100%; height: auto; display: block; }
     gap: 32px;
 }
 
-.playground-text-side {
+.how-it-works-text-side {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width: 100%;
 }
 
-.playground-text-side .section-title {
+.how-it-works-text-side .section-title {
     text-align: center;
 }
 
-.playground-text-side .section-desc {
+.how-it-works-text-side .section-desc {
     text-align: center;
 }
 
-.playground-steps {
+.how-it-works-visual-side {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    align-items: center;
     width: 100%;
-    margin-top: 16px;
 }
 
-.playground-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    background-color: var(--bg-white);
-    border: 1px solid var(--border-color);
-    padding: 20px;
-    border-radius: var(--border-radius-md);
-    text-align: left;
-    box-shadow: var(--box-shadow);
+/* --- Vertical Timeline override for How It Works with Simulator --- */
+.vertical-timeline {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+    padding-left: 56px !important;
+    max-width: 450px !important;
+    margin: 32px 0 24px !important;
+    text-align: left !important;
+    position: relative !important;
+    width: 100% !important;
 }
 
-.playground-step .step-icon {
-    font-size: 2rem;
-    flex-shrink: 0;
+.vertical-timeline .timeline-line {
+    position: absolute !important;
+    left: 20px !important;
+    top: 12px !important;
+    bottom: 12px !important;
+    width: 2px !important;
+    height: auto !important;
+    background: linear-gradient(to bottom, var(--primary), #0fa46a) !important;
 }
 
-.playground-step .step-text h3 {
-    font-size: 1.05rem;
-    font-weight: 800;
-    color: var(--text-dark);
-    margin-bottom: 4px;
+.vertical-timeline .timeline-item {
+    position: relative !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    display: block !important;
 }
 
-.playground-step .step-text p {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    line-height: 1.45;
+.vertical-timeline .timeline-num {
+    position: absolute !important;
+    left: -51px !important;
+    top: 0 !important;
+    transform: none !important;
+}
+
+.vertical-timeline .timeline-content h3 {
+    text-align: left !important;
+    font-size: 1.05rem !important;
+    margin-bottom: 4px !important;
+}
+
+.vertical-timeline .timeline-content p {
+    text-align: left !important;
+    font-size: 0.9rem !important;
 }
 
 .text-left { text-align: left !important; }
@@ -1740,29 +1757,29 @@ img { max-width: 100%; height: auto; display: block; }
         max-width: 350px;
     }
 
-    /* Playground Desktop */
-    .playground-layout-grid {
+    /* How It Works Desktop */
+    .how-it-works-layout-grid {
         flex-direction: row;
         justify-content: space-between;
         gap: 60px;
         align-items: center;
     }
 
-    .playground-text-side {
+    .how-it-works-text-side {
         flex: 1.1;
         align-items: flex-start;
         text-align: left;
     }
 
-    .playground-text-side .section-title {
+    .how-it-works-text-side .section-title {
         text-align: left;
     }
 
-    .playground-text-side .section-desc {
+    .how-it-works-text-side .section-desc {
         text-align: left;
     }
 
-    .playground-visual-side {
+    .how-it-works-visual-side {
         flex: 0.9;
         display: flex;
         flex-direction: column;

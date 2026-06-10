@@ -30,7 +30,7 @@
                 <span>Cateto ia</span>
             </a>
             <nav class="nav-menu">
-                <a href="#playground" class="nav-link">Teste Grátis</a>
+                <a href="#como-funciona" class="nav-link">Teste Grátis</a>
                 <a href="#beneficios" class="nav-link">Benefícios</a>
                 <a href="#diferenciais" class="nav-link">Diferenciais</a>
                 <a href="#depoimentos" class="nav-link">Depoimentos</a>
@@ -90,111 +90,7 @@
         </div>
     </section>
 
-    <!-- Playground Section (Interactive Simulator with Explanation) -->
-    <section class="playground-section" id="playground">
-        <div class="container playground-container">
-            <div class="playground-layout-grid">
-                <!-- Left Column: Explanation -->
-                <div class="playground-text-side">
-                    <div class="badge-capsule bg-mint-green text-green">
-                        <span>Simulador Prático</span>
-                    </div>
-                    <h2 class="section-title text-left">Como funciona o Cateto IA?</h2>
-                    <p class="section-desc text-left">
-                        O Cateto IA funciona 100% integrado ao seu WhatsApp. Faça um teste rápido no nosso simulador interativo e veja como gerenciar seu dinheiro se torna algo extremamente simples e instantâneo.
-                    </p>
-                    
-                    <div class="playground-steps">
-                        <div class="playground-step">
-                            <span class="step-icon">💬</span>
-                            <div class="step-text">
-                                <h3>Envie suas despesas na hora</h3>
-                                <p>Basta digitar o nome do gasto e o valor (ex: <strong>"Uber 35"</strong> ou <strong>"Pizza 50"</strong>) e mandar a mensagem.</p>
-                            </div>
-                        </div>
-                        <div class="playground-step">
-                            <span class="step-icon">🏷️</span>
-                            <div class="step-text">
-                                <h3>IA Categoriza Automaticamente</h3>
-                                <p>Nossa inteligência artificial entende a mensagem, identifica a categoria do gasto e organiza tudo sem planilhas.</p>
-                            </div>
-                        </div>
-                        <div class="playground-step">
-                            <span class="step-icon">📉</span>
-                            <div class="step-text">
-                                <h3>Monitore seu Saldo Semanal</h3>
-                                <p>Seu saldo disponível é atualizado no ato. Assim, você sabe exatamente quanto ainda pode gastar hoje.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Right Column: Interactive Simulator -->
-                <div class="playground-visual-side">
-                    <div class="playground-label">
-                        <span class="pulse-dot"></span>
-                        Simulador ativo — faça o teste abaixo!
-                    </div>
-                    
-                    <div class="phone-frame">
-                        <div class="phone-notch"></div>
-                        <div class="phone-screen">
-                            <div class="chat-header">
-                                <div class="chat-header-left">
-                                    <span class="chat-back-arrow">‹</span>
-                                    <div class="chat-avatar">
-                                        <img src="assets/logo.jpg" alt="Cateto ia Logo">
-                                    </div>
-                                    <div class="chat-user-info">
-                                        <h4>Cateto ia</h4>
-                                        <p class="status">online</p>
-                                    </div>
-                                </div>
-                                <div class="chat-saldo-display">
-                                    <span class="saldo-label">Saldo Semanal</span>
-                                    <span class="saldo-value" id="saldo-display">R$ 500,00</span>
-                                </div>
-                            </div>
-                            
-                            <div class="chat-messages" id="chat-messages-container">
-                                <div class="chat-date">Hoje</div>
-                                
-                                <div class="message incoming animate-in">
-                                    <div class="message-text">
-                                        Olá! 👋 Eu sou o <strong>Cateto ia</strong>, sua IA financeira no WhatsApp!<br><br>
-                                        Me envie um gasto para eu registrar. Exemplo: <em>"Pizza 50"</em> ou <em>"Uber 25"</em>.<br><br>
-                                        Ou clique nos botões abaixo! 👇
-                                    </div>
-                                    <span class="message-time">agora</span>
-                                </div>
-                            </div>
-
-                            <div class="chat-quick-actions" id="quick-actions">
-                                <button class="quick-btn" data-message="Uber 35">🚗 Uber R$ 35</button>
-                                <button class="quick-btn" data-message="Almoço 45">🍔 Almoço R$ 45</button>
-                                <button class="quick-btn" data-message="Pizza 50">🍕 Pizza R$ 50</button>
-                                <button class="quick-btn" data-message="Show 120">🎉 Show R$ 120</button>
-                                <button class="quick-btn" data-message="Dica de economia">💡 Dica</button>
-                            </div>
-                            
-                            <form class="chat-input-area" id="chat-form">
-                                <input type="text" id="chat-input" placeholder="Digite um gasto... ex: Pizza 50" autocomplete="off">
-                                <button type="submit" class="chat-send-btn" id="send-button" aria-label="Enviar mensagem">
-                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" fill="#ffffff"/>
-                                    </svg>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="simples-assim-badge">
-                        <span>✨ Simples assim!</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Diferenciais Section -->
     <section class="diferenciais-section" id="diferenciais">
@@ -322,47 +218,116 @@
         </div>
     </section>
 
-    <!-- How It Works Section -->
+    <!-- How It Works Section (with Simulator integrated) -->
     <section class="how-it-works-section" id="como-funciona">
-        <div class="container">
-            <div class="badge-capsule bg-mint-green text-green">
-                <span>Chegou o Cateto — a IA feita pra gente como a gente</span>
-            </div>
-            
-            <h2 class="section-title">Como funciona?</h2>
-            <p class="section-desc">É tão fácil que até a Tia do Zap usa pra se organizar, rs 👵📲</p>
+        <div class="container how-it-works-container">
+            <div class="how-it-works-layout-grid">
+                <!-- Left Column: Explanation & Timeline -->
+                <div class="how-it-works-text-side">
+                    <div class="badge-capsule bg-mint-green text-green">
+                        <span>Chegou o Cateto — a IA feita pra gente como a gente</span>
+                    </div>
+                    
+                    <h2 class="section-title text-left">Como funciona?</h2>
+                    <p class="section-desc text-left">É tão fácil que até a Tia do Zap usa pra se organizar, rs 👵📲</p>
 
-            <div class="timeline">
-                <div class="timeline-line"></div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-num">1</div>
-                    <div class="timeline-content">
-                        <h3>Garanta seu acesso</h3>
-                        <p>Você vai receber um link direto pro WhatsApp. É só clicar e começar.</p>
+                    <div class="timeline vertical-timeline">
+                        <div class="timeline-line"></div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-num">1</div>
+                            <div class="timeline-content">
+                                <h3>Garanta seu acesso</h3>
+                                <p>Você vai receber um link direto pro WhatsApp. É só clicar e começar.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-num">2</div>
+                            <div class="timeline-content">
+                                <h3>Mande um "oi"</h3>
+                                <p>O Cateto ia te dá boas-vindas e já pergunta como você quer organizar seu dinheiro — fácil e rápido.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-num">3</div>
+                            <div class="timeline-content">
+                                <h3>Pronto!</h3>
+                                <p><strong>Registros, relatórios e alertas direto no seu zap</strong></p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-num">2</div>
-                    <div class="timeline-content">
-                        <h3>Mande um "oi"</h3>
-                        <p>O Cateto ia te dá boas-vindas e já pergunta como você quer organizar seu dinheiro — fácil e rápido.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-num">3</div>
-                    <div class="timeline-content">
-                        <h3>Pronto!</h3>
-                        <p><strong>Registros, relatórios e alertas direto no seu zap</strong></p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="shield-lock-badge">
-                <span class="lock-icon">🔒</span>
-                <span>Sem app para baixar / Direto do zap</span>
+                    <div class="shield-lock-badge" style="margin-top: 16px;">
+                        <span class="lock-icon">🔒</span>
+                        <span>Sem app para baixar / Direto do zap</span>
+                    </div>
+                </div>
+
+                <!-- Right Column: Simulator -->
+                <div class="how-it-works-visual-side">
+                    <div class="playground-label">
+                        <span class="pulse-dot"></span>
+                        Simule um gasto no WhatsApp abaixo!
+                    </div>
+                    
+                    <div class="phone-frame">
+                        <div class="phone-notch"></div>
+                        <div class="phone-screen">
+                            <div class="chat-header">
+                                <div class="chat-header-left">
+                                    <span class="chat-back-arrow">‹</span>
+                                    <div class="chat-avatar">
+                                        <img src="assets/logo.jpg" alt="Cateto ia Logo">
+                                    </div>
+                                    <div class="chat-user-info">
+                                        <h4>Cateto ia</h4>
+                                        <p class="status">online</p>
+                                    </div>
+                                </div>
+                                <div class="chat-saldo-display">
+                                    <span class="saldo-label">Saldo Semanal</span>
+                                    <span class="saldo-value" id="saldo-display">R$ 500,00</span>
+                                </div>
+                            </div>
+                            
+                            <div class="chat-messages" id="chat-messages-container">
+                                <div class="chat-date">Hoje</div>
+                                
+                                <div class="message incoming animate-in">
+                                    <div class="message-text">
+                                        Olá! 👋 Eu sou o <strong>Cateto ia</strong>, sua IA financeira no WhatsApp!<br><br>
+                                        Me envie um gasto para eu registrar. Exemplo: <em>"Pizza 50"</em> ou <em>"Uber 25"</em>.<br><br>
+                                        Ou clique nos botões abaixo! 👇
+                                    </div>
+                                    <span class="message-time">agora</span>
+                                </div>
+                            </div>
+
+                            <div class="chat-quick-actions" id="quick-actions">
+                                <button class="quick-btn" data-message="Uber 35">🚗 Uber R$ 35</button>
+                                <button class="quick-btn" data-message="Almoço 45">🍔 Almoço R$ 45</button>
+                                <button class="quick-btn" data-message="Pizza 50">🍕 Pizza R$ 50</button>
+                                <button class="quick-btn" data-message="Show 120">🎉 Show R$ 120</button>
+                                <button class="quick-btn" data-message="Dica de economia">💡 Dica</button>
+                            </div>
+                            
+                            <form class="chat-input-area" id="chat-form">
+                                <input type="text" id="chat-input" placeholder="Digite um gasto... ex: Pizza 50" autocomplete="off">
+                                <button type="submit" class="chat-send-btn" id="send-button" aria-label="Enviar mensagem">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" fill="#ffffff"/>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="simples-assim-badge">
+                        <span>✨ Simples assim!</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
