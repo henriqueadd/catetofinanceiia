@@ -643,10 +643,26 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* --- Diferenciais Section --- */
 .diferenciais-section {
-    background: linear-gradient(135deg, #0a5208 0%, #178214 100%);
+    background: linear-gradient(135deg, #e8f9e7 0%, #ccefc8 100%);
     padding: 50px 0;
-    color: var(--text-light);
+    color: var(--text-dark);
     text-align: center;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.diferenciais-section .section-title {
+    color: var(--text-dark) !important;
+}
+
+.diferenciais-section .section-desc {
+    color: var(--text-muted) !important;
+}
+
+.diferenciais-section .badge-capsule {
+    background-color: var(--primary);
+    color: var(--text-light);
+    border: none;
 }
 
 .diferenciais-grid {
@@ -658,19 +674,20 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .diferencial-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
     border-radius: 20px;
     padding: 28px 24px;
     text-align: left;
     transition: all 0.3s ease;
-    backdrop-filter: blur(8px);
+    box-shadow: var(--box-shadow);
 }
 
 .diferencial-card:hover {
-    background: rgba(255,255,255,0.08);
+    background: var(--bg-white);
     transform: translateY(-3px);
-    border-color: rgba(25, 181, 20, 0.3);
+    border-color: var(--primary);
+    box-shadow: var(--box-shadow-hover);
 }
 
 .diferencial-icon {
@@ -682,17 +699,17 @@ img { max-width: 100%; height: auto; display: block; }
 .diferencial-card h3 {
     font-size: 1.1rem;
     font-weight: 800;
-    color: var(--text-light);
+    color: var(--text-dark);
     margin-bottom: 8px;
 }
 
 .diferencial-card p {
     font-size: 0.88rem;
-    color: #94a3b8;
+    color: var(--text-muted);
     line-height: 1.5;
 }
 
-.diferencial-card strong { color: #a7f3d0; }
+.diferencial-card strong { color: var(--primary-dark); }
 
 /* --- Benefits Section --- */
 .benefits-section {
