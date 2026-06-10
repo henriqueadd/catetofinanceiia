@@ -643,7 +643,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* --- Diferenciais Section --- */
 .diferenciais-section {
-    background: linear-gradient(135deg, #041703 0%, #0c310b 100%);
+    background: linear-gradient(135deg, #0a5208 0%, #178214 100%);
     padding: 50px 0;
     color: var(--text-light);
     text-align: center;
