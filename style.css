@@ -268,19 +268,13 @@ img { max-width: 100%; height: auto; display: block; }
     background-color: var(--primary);
     border-radius: 2px;
 }
-
-.hero-sublist {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 30px;
-}
-
-.hero-sublist p {
-    font-size: 0.95rem;
+.hero-desc {
+    font-size: 1rem;
     color: var(--text-muted);
-    font-weight: 500;
-    text-align: left;
+    line-height: 1.6;
+    text-align: center;
+    margin-bottom: 30px;
+    max-width: 500px;
 }
 
 .hero-layout-grid {
@@ -649,7 +643,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* --- Diferenciais Section --- */
 .diferenciais-section {
-    background: linear-gradient(135deg, #020817 0%, #0f172a 100%);
+    background: linear-gradient(135deg, #041703 0%, #0c310b 100%);
     padding: 50px 0;
     color: var(--text-light);
     text-align: center;
@@ -1603,14 +1597,11 @@ img { max-width: 100%; height: auto; display: block; }
         margin-bottom: 24px;
     }
 
-    .hero-sublist {
+    .hero-desc {
         text-align: left;
-        align-items: flex-start;
+        font-size: 1.05rem;
         margin-bottom: 36px;
-        gap: 12px;
     }
-
-    .hero-sublist p { font-size: 1.05rem; }
 
     .hero-visual-side {
         flex: 0.8;
