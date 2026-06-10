@@ -6,104 +6,156 @@ document.addEventListener('DOMContentLoaded', () => {
             const href = link.getAttribute('href');
             if (href && href.startsWith('#')) {
                 e.preventDefault();
-                
-                // If it is '#', scroll to top
                 if (href === '#') {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                     return;
                 }
-                
                 const target = document.querySelector(href);
                 if (target) {
-                    const headerHeight = 70; // fixed header height offset
+                    const headerHeight = 70;
                     const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
                 }
             }
         });
     });
 
-    // --- Carousel Horizontal Scroll-Snap Sync (Mobile Only) ---
+    // --- Carousel Horizontal Scroll-Snap Sync ---
     const track = document.getElementById('carousel-track');
     const dots = document.querySelectorAll('#carousel-dots .dot');
 
     if (track && dots.length > 0) {
         track.addEventListener('scroll', () => {
-            // Calculate current slide index based on scroll position
             const width = track.getBoundingClientRect().width;
             if (width === 0) return;
             const index = Math.round(track.scrollLeft / width);
-            
             dots.forEach((dot, idx) => {
-                if (idx === index) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
+                dot.classList.toggle('active', idx === index);
             });
         });
-        
-        // Allow clicking dots to scroll to that slide
+
         dots.forEach((dot, index) => {
             dot.addEventListener('click', () => {
                 const width = track.getBoundingClientRect().width;
-                track.scrollTo({
-                    left: width * index,
-                    behavior: 'smooth'
-                });
+                track.scrollTo({ left: width * index, behavior: 'smooth' });
             });
         });
     }
 
-    // --- Chat Simulator ---
+    // --- FAQ Accordion ---
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            // Close all
+            faqItems.forEach(i => i.classList.remove('active'));
+            // Open clicked if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+
+    // =========================================================================
+    // INTERACTIVE CHAT SIMULATOR (Playground)
+    // =========================================================================
     const chatMessagesContainer = document.getElementById('chat-messages-container');
     const chatForm = document.getElementById('chat-form');
     const chatInput = document.getElementById('chat-input');
     const quickBtns = document.querySelectorAll('.quick-btn');
+    const saldoDisplay = document.getElementById('saldo-display');
 
-    // State Variables for Simulator
-    let saldoSemanal = 450.00;
-    let economiaEstimada = 50.00;
+    // State
+    let saldoSemanal = 500.00;
+    let interactionCount = 0;
+    let ctaShown = false;
+
+    const CHECKOUT_URL = 'https://pay.hub.la/7i5nXgo1xTAnq0W9Z9wz';
+
+    // Category mappings
+    const categories = {
+        transporte: {
+            keywords: ['uber', 'taxi', 'ônibus', 'onibus', 'metrô', 'metro', 'combustivel', 'gasolina', 'carro', 'transporte', 'pedágio', 'pedagio', '99', 'moto'],
+            icon: '🚗',
+            name: 'Transporte'
+        },
+        alimentacao: {
+            keywords: ['almoço', 'almoco', 'jantar', 'supermercado', 'comida', 'restaurante', 'pão', 'padaria', 'lanche', 'pizza', 'ifood', 'mercado', 'café', 'cafe', 'comer', 'hamburguer', 'sushi', 'açaí', 'acai', 'marmita', 'delivery', 'rappi'],
+            icon: '🍕',
+            name: 'Alimentação'
+        },
+        lazer: {
+            keywords: ['cinema', 'festa', 'bar', 'show', 'lazer', 'viagem', 'cerveja', 'balada', 'game', 'jogo', 'shopping', 'ingresso', 'netflix', 'spotify', 'assinatura', 'roupa', 'tênis', 'tenis'],
+            icon: '🎉',
+            name: 'Lazer'
+        },
+        saude: {
+            keywords: ['farmácia', 'farmacia', 'remédio', 'remedio', 'médico', 'medico', 'consulta', 'academia', 'dentista'],
+            icon: '💊',
+            name: 'Saúde'
+        },
+        moradia: {
+            keywords: ['aluguel', 'conta', 'luz', 'água', 'agua', 'internet', 'celular', 'condominio', 'condomínio'],
+            icon: '🏠',
+            name: 'Moradia'
+        }
+    };
 
     const economizarDicas = [
-        "🐷 **Regra das 24 horas:** Espere um dia inteiro antes de comprar qualquer item não essencial. Você evitará muitas compras por impulso.",
-        "🐷 **Corte assinaturas fantasmas:** Revise suas assinaturas de streaming. Cancelar apenas um serviço não utilizado pode te salvar R$ 150 a R$ 300 por ano!",
-        "🐷 **Almoço planejado:** Levar marmita apenas 2 vezes por semana pode economizar mais de R$ 160 por mês em comparação a comer fora.",
-        "🐷 **Dia Zero Gastos:** Tente estabelecer um dia na semana em que você gasta absolutamente R$ 0 (sem delivery, sem cafezinho).",
-        "🐷 **Custo em Horas:** Ao comprar algo supérfluo, calcule o preço do item dividido pelo valor da sua hora trabalhada. Vale a pena?"
+        "🐷 **Regra das 24 horas:** Espere um dia antes de comprar algo não essencial. Você vai evitar muitas compras por impulso!",
+        "🐷 **Corte assinaturas fantasmas:** Revise suas assinaturas. Cancelar 1 serviço esquecido pode salvar R$ 150 a R$ 300 por ano!",
+        "🐷 **Almoço planejado:** Levar marmita 2x por semana pode economizar R$ 160/mês comparado a comer fora.",
+        "🐷 **Dia Zero Gastos:** Tente 1 dia na semana gastando absolutamente R$ 0. Sem delivery, sem cafezinho!",
+        "🐷 **Custo em Horas:** Divida o preço de algo pelo valor da sua hora trabalhada. Ainda vale a pena?"
     ];
 
-    // Helper to format currency
+    // --- Helpers ---
     function formatCurrency(val) {
         return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val);
     }
 
-    // Helper to scroll chat to bottom
     function scrollToBottom() {
         if (chatMessagesContainer) {
-            chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+            requestAnimationFrame(() => {
+                chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+            });
         }
     }
 
-    // Add message to chat container
-    function appendMessage(text, type = 'incoming') {
-        if (!chatMessagesContainer) return;
+    function getTimeNow() {
+        return new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function updateSaldoDisplay() {
+        if (!saldoDisplay) return;
+        saldoDisplay.textContent = formatCurrency(saldoSemanal);
+        saldoDisplay.classList.add('updated');
+        setTimeout(() => saldoDisplay.classList.remove('updated'), 600);
         
+        // Change color based on remaining balance
+        if (saldoSemanal <= 50) {
+            saldoDisplay.style.color = '#ef4444';
+        } else if (saldoSemanal <= 150) {
+            saldoDisplay.style.color = '#fbbf24';
+        } else {
+            saldoDisplay.style.color = '#a7f3d0';
+        }
+    }
+
+    // --- Add Message ---
+    function appendMessage(text, type = 'incoming', extraHTML = '') {
+        if (!chatMessagesContainer) return;
+
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${type}`;
-        
-        // Format markdown-like bold and newlines
+
+        // Format markdown bold and newlines
         let formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
         formattedText = formattedText.replace(/\n/g, '<br>');
 
-        const time = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-        
+        const time = getTimeNow();
+
         if (type === 'outgoing') {
             messageDiv.innerHTML = `
                 <div class="message-text">${formattedText}</div>
@@ -111,101 +163,81 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         } else {
             messageDiv.innerHTML = `
-                <div class="message-text">${formattedText}</div>
+                <div class="message-text">${formattedText}${extraHTML}</div>
                 <span class="message-time">${time}</span>
             `;
         }
-        
+
         chatMessagesContainer.appendChild(messageDiv);
         scrollToBottom();
     }
 
-    // Show AI typing state
+    // --- Typing Indicator ---
     function showTypingIndicator() {
         if (!chatMessagesContainer) return null;
-        
+
         const typingDiv = document.createElement('div');
-        typingDiv.className = 'message incoming typing-indicator-msg';
+        typingDiv.className = 'message incoming';
+        typingDiv.style.opacity = '1';
         typingDiv.innerHTML = `
-            <div class="message-text"><i>digitando...</i></div>
+            <div class="message-text">
+                <div class="typing-dots">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
         `;
         chatMessagesContainer.appendChild(typingDiv);
         scrollToBottom();
         return typingDiv;
     }
 
-    // Parse message to detect transactions
+    // --- Parse Message ---
     function parseMessage(text) {
         const cleanText = text.toLowerCase().trim();
-        
-        // Match numbers like 40, 150.50, 2,50
+
+        // Check for balance/savings queries
+        if (/saldo|quanto|relat[oó]rio|resumo|extrato/i.test(cleanText)) {
+            return { type: 'query_savings' };
+        }
+
+        // Check for tips
+        if (/dica|conselho|ajuda|economiz|poupar|sugest/i.test(cleanText)) {
+            return { type: 'tip' };
+        }
+
+        // Match numbers
         const numberRegex = /(\d+([.,]\d+)?)/;
         const numberMatch = cleanText.match(numberRegex);
-        
+
         if (!numberMatch) {
-            // Check for general questions
-            if (cleanText.includes('economiz') || cleanText.includes('poupar') || cleanText.includes('saldo') || cleanText.includes('quanto')) {
-                return { type: 'query_savings' };
-            }
-            if (cleanText.includes('dica') || cleanText.includes('conselho') || cleanText.includes('ajuda')) {
-                return { type: 'tip' };
-            }
             return { type: 'unknown' };
         }
 
         const val = parseFloat(numberMatch[1].replace(',', '.'));
-        
+        let category = null;
+        let matchedDesc = '';
+
         // Detect category
-        let category = 'outros';
-        let matchedDesc = 'Gasto';
-
-        // Keywords
-        const transportKeywords = ['uber', 'taxi', 'ônibus', 'onibus', 'metrô', 'combustivel', 'gasolina', 'carro', 'transporte', 'pedágio'];
-        const foodKeywords = ['almoço', 'almoco', 'jantar', 'supermercado', 'comida', 'restaurante', 'pão', 'padaria', 'lanche', 'pizza', 'ifood', 'mercado', 'café', 'cafe', 'comer'];
-        const leisureKeywords = ['cinema', 'festa', 'bar', 'show', 'lazer', 'viagem', 'cerveja', 'balada', 'game', 'jogo', 'shopping', 'ingresso'];
-
-        let found = false;
-        
-        for (const kw of foodKeywords) {
-            if (cleanText.includes(kw)) {
-                category = 'alimentacao';
-                matchedDesc = kw.charAt(0).toUpperCase() + kw.slice(1);
-                found = true;
-                break;
-            }
-        }
-
-        if (!found) {
-            for (const kw of transportKeywords) {
+        for (const [catKey, catData] of Object.entries(categories)) {
+            for (const kw of catData.keywords) {
                 if (cleanText.includes(kw)) {
-                    category = 'transporte';
+                    category = catData;
                     matchedDesc = kw.charAt(0).toUpperCase() + kw.slice(1);
-                    found = true;
                     break;
                 }
             }
+            if (category) break;
         }
 
-        if (!found) {
-            for (const kw of leisureKeywords) {
-                if (cleanText.includes(kw)) {
-                    category = 'lazer';
-                    matchedDesc = kw.charAt(0).toUpperCase() + kw.slice(1);
-                    found = true;
-                    break;
-                }
-            }
-        }
-
-        if (!found) {
-            // Extract the rest of the string as description if possible
-            const parts = cleanText.split(numberMatch[1]);
-            if (parts.length > 1 && parts[1].replace(/em|com|de|no|na/g, '').trim().length > 2) {
-                matchedDesc = parts[1].replace(/em|com|de|no|na/g, '').trim();
-                matchedDesc = matchedDesc.charAt(0).toUpperCase() + matchedDesc.slice(1);
-            } else if (parts[0].replace(/gastei|paguei/g, '').trim().length > 2) {
-                matchedDesc = parts[0].replace(/gastei|paguei/g, '').trim();
-                matchedDesc = matchedDesc.charAt(0).toUpperCase() + matchedDesc.slice(1);
+        // Fallback: try to extract description
+        if (!category) {
+            category = { icon: '📦', name: 'Outros' };
+            const parts = cleanText.replace(/r\$?\s*/g, '').split(numberMatch[1]);
+            const descPart = (parts[0] || parts[1] || '').replace(/gastei|paguei|comprei|em|com|de|no|na/g, '').trim();
+            if (descPart.length > 1) {
+                matchedDesc = descPart.charAt(0).toUpperCase() + descPart.slice(1);
+            } else {
+                matchedDesc = 'Gasto';
             }
         }
 
@@ -217,54 +249,90 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // Process chat interaction
+    // --- Show CTA after 3 interactions ---
+    function showConversionCTA() {
+        if (ctaShown) return;
+        ctaShown = true;
+
+        const typingIndicator = showTypingIndicator();
+
+        setTimeout(() => {
+            if (typingIndicator) typingIndicator.remove();
+
+            const ctaHTML = `<a href="${CHECKOUT_URL}" class="cta-inline" target="_blank">🚀 Ativar o Cateto ia real!</a>`;
+
+            appendMessage(
+                `Viu como é fácil? 🎉\n\nCom apenas 3 registros, você já começou a ter **controle total** dos seus gastos!\n\nImagine isso funcionando 24h no seu WhatsApp, com alertas, relatórios e muito mais.\n\n**Ative agora o Cateto ia real no seu WhatsApp!** 👇`,
+                'incoming',
+                ctaHTML
+            );
+        }, 1200);
+    }
+
+    // --- Process User Message ---
     function processUserMessage(text) {
         appendMessage(text, 'outgoing');
-        
+
         const typingIndicator = showTypingIndicator();
-        
+
+        const delay = 600 + Math.random() * 500;
+
         setTimeout(() => {
-            // Remove typing indicator
             if (typingIndicator) typingIndicator.remove();
-            
+
             const parsed = parseMessage(text);
-            
+
             if (parsed.type === 'transaction') {
                 saldoSemanal -= parsed.amount;
                 if (saldoSemanal < 0) saldoSemanal = 0;
-                economiaEstimada += parsed.amount * 0.12;
-
-                let catIcon = '📦';
-                if (parsed.category === 'transporte') catIcon = '🚗';
-                else if (parsed.category === 'alimentacao') catIcon = '🛒';
-                else if (parsed.category === 'lazer') catIcon = '🎉';
-
-                let response = `Gasto registrado! ${catIcon}\n**${parsed.description}**: ${formatCurrency(parsed.amount)}\n\n`;
                 
-                if (saldoSemanal > 150) {
-                    response += `Seu limite semanal restante é de **${formatCurrency(saldoSemanal)}**. Continue no controle! 📈`;
-                } else if (saldoSemanal > 50) {
-                    response += `⚠️ **Aviso:** Seu limite semanal restante é de **${formatCurrency(saldoSemanal)}**. Que tal evitar novos gastos hoje?`;
+                updateSaldoDisplay();
+                interactionCount++;
+
+                let response = `Gasto registrado! ${parsed.category.icon}\n**${parsed.description}**: ${formatCurrency(parsed.amount)}\nCategoria: ${parsed.category.name}.\n\n`;
+
+                if (saldoSemanal > 200) {
+                    response += `Saldo restante: **${formatCurrency(saldoSemanal)}**\nVocê está no controle! 📈`;
+                } else if (saldoSemanal > 80) {
+                    response += `⚠️ Saldo restante: **${formatCurrency(saldoSemanal)}**\nFique de olho nos gastos hoje!`;
                 } else if (saldoSemanal > 0) {
-                    response += `🚨 **Atenção:** Quase no fim! Restam apenas **${formatCurrency(saldoSemanal)}** para a semana.`;
+                    response += `🚨 **Atenção!** Restam apenas **${formatCurrency(saldoSemanal)}** para a semana. Segura os gastos!`;
                 } else {
-                    response += `❌ **Limite atingido!** Você ultrapassou o orçamento semanal. Mas não se preocupe, te ajudo a planejar os próximos dias!`;
+                    response += `❌ **Limite atingido!** Você ultrapassou o orçamento semanal. Vamos replanejar?`;
                 }
-                
+
                 appendMessage(response, 'incoming');
+
+                // After 3 interactions, show CTA
+                if (interactionCount >= 3) {
+                    showConversionCTA();
+                }
+
             } else if (parsed.type === 'query_savings') {
-                appendMessage(`📊 **Relatório Financeiro:**\n\nNesta semana você economizou **${formatCurrency(economiaEstimada)}** comparado à sua média habitual!\n\nSeu saldo disponível para gastos é de **${formatCurrency(saldoSemanal)}**.`, 'incoming');
+                interactionCount++;
+                const gastou = 500 - saldoSemanal;
+                appendMessage(
+                    `📊 **Seu Resumo Semanal:**\n\n💰 Saldo disponível: **${formatCurrency(saldoSemanal)}**\n💸 Total gasto: **${formatCurrency(gastou)}**\n📈 Você ainda tem **${Math.round((saldoSemanal / 500) * 100)}%** do seu orçamento!`,
+                    'incoming'
+                );
+                if (interactionCount >= 3) showConversionCTA();
+
             } else if (parsed.type === 'tip') {
+                interactionCount++;
                 const randomTip = economizarDicas[Math.floor(Math.random() * economizarDicas.length)];
                 appendMessage(randomTip, 'incoming');
+                if (interactionCount >= 3) showConversionCTA();
+
             } else {
-                appendMessage(`Ainda estou aprendendo a ler essa mensagem! 🐷\n\nMe envie um gasto no formato: **"Almoço R$ 35"** ou **"Uber 15"** para eu organizar para você!`, 'incoming');
+                appendMessage(
+                    `Ainda estou aprendendo a ler essa mensagem! 🐷\n\nMe envie um gasto no formato:\n• **"Pizza 50"**\n• **"Uber 35"**\n• **"Almoço 45"**\n\nOu clique nos botões rápidos! 👇`,
+                    'incoming'
+                );
             }
-            
-        }, 500 + Math.random() * 400); // simulated WhatsApp typing delay
+        }, delay);
     }
 
-    // Hook form submit
+    // --- Form Submit ---
     if (chatForm) {
         chatForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -276,14 +344,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Hook quick action buttons
+    // --- Quick Action Buttons ---
     quickBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const message = btn.getAttribute('data-message');
             processUserMessage(message);
         });
     });
-    
-    // Initial scroll to bottom
+
+    // --- Initial scroll ---
     scrollToBottom();
+
+    // --- Scroll Animations (Intersection Observer) ---
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observe cards and sections
+    const animateElements = document.querySelectorAll(
+        '.diferencial-card, .security-card, .testimonial-card, .faq-item, .timeline-item'
+    );
+
+    animateElements.forEach((el, index) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = `opacity 0.5s ease ${index * 0.08}s, transform 0.5s ease ${index * 0.08}s`;
+        observer.observe(el);
+    });
 });
