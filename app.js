@@ -373,7 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Observe cards and sections
     const animateElements = document.querySelectorAll(
-        '.diferencial-card, .security-card, .testimonial-card, .faq-item, .timeline-item'
+        '.playground-step, .diferencial-card, .security-card, .testimonial-card, .faq-item, .timeline-item'
     );
 
     animateElements.forEach((el, index) => {
