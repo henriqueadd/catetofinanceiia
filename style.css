@@ -1800,3 +1800,32 @@ img { max-width: 100%; height: auto; display: block; }
     0%, 60%, 100% { transform: translateY(0); }
     30% { transform: translateY(-6px); }
 }
+
+/* --- Performance Optimization & Smooth Scrolling --- */
+.animate-element {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}
+
+.animate-element.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* GPU promotion for elements with hover or animation properties */
+.diferencial-card, 
+.security-card, 
+.testimonial-card, 
+.btn, 
+.btn-cta, 
+.quick-btn, 
+.faq-item, 
+.timeline-item, 
+.hero-img-container {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+}

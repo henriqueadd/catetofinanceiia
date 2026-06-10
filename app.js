@@ -25,14 +25,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const dots = document.querySelectorAll('#carousel-dots .dot');
 
     if (track && dots.length > 0) {
+        let ticking = false;
         track.addEventListener('scroll', () => {
-            const width = track.getBoundingClientRect().width;
-            if (width === 0) return;
-            const index = Math.round(track.scrollLeft / width);
-            dots.forEach((dot, idx) => {
-                dot.classList.toggle('active', idx === index);
-            });
-        });
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const width = track.getBoundingClientRect().width;
+                    if (width !== 0) {
+                        const index = Math.round(track.scrollLeft / width);
+                        dots.forEach((dot, idx) => {
+                            dot.classList.toggle('active', idx === index);
+                        });
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
 
         dots.forEach((dot, index) => {
             dot.addEventListener('click', () => {
@@ -364,8 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('visible');
                 observer.unobserve(entry.target);
             }
         });
@@ -377,9 +384,8 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     animateElements.forEach((el, index) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = `opacity 0.5s ease ${index * 0.08}s, transform 0.5s ease ${index * 0.08}s`;
+        el.classList.add('animate-element');
+        el.style.transitionDelay = `${(index % 3) * 0.08}s`;
         observer.observe(el);
     });
 });
